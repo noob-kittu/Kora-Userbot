@@ -1,4 +1,4 @@
-from Kora import ALIVE_NAME, CMD_HELP, ALIVE_LOGO
+from Kora import ALIVE_NAME, CMD_HELP, ALIVE_LOGO, bot
 from platform import python_version, uname
 from telethon import version
 import asyncio
