@@ -1,0 +1,27 @@
+{
+    "name": "Kora Userbot",
+    "description": "Best Telegram Userbot.",
+    "keywords": [
+       "telegram",
+       "telethon",
+       "userbot",
+       "kora"
+    ],   
+ "repository": "https://github.com/noob-kittu/Kora-Userbot",
+ "addons": [
+    {
+       "options": {
+          "version": "12"
+       },
+       "plan": "heroku-postgresql"
+    }
+ ],
+ "env": {
+    "STRING_SESSION": {
+       "description": "Generate telethon string session and input below",
+       "required": true,
+       "value": ""
+    }
+    
+ }
+}
