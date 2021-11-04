@@ -3,12 +3,14 @@ import io
 import Kora.sql.antipm_sql as antipm_sql
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon import events, functions
+from telethon.tl.types import PeerUser, PeerChat, PeerChannel
+from telethon.utils import get_peer_id
 from Kora import BOTLOG, CMD_HELP, bot
 PM_WARNS = {}
 PREV_REPLY_MESSAGE = {}
-
-
 user = bot.get_me()
+uid = get_peer_id(user)
+
 
 USER_BOT_WARN_ZERO = "`Kora`: `You were spamming my master {user}'s inbox, henceforth your retarded lame ass has been blocked by my master's Kora.` "
 USER_BOT_NO_WARN = (f"`Kora`: ** I'm Assistant Kora here to assist you, My Master {user} will contact you soon! have patience..**\n\n"
@@ -139,6 +141,7 @@ if BOTLOG is not None:
 
     @bot.on(events.NewMessage(incoming=True))
     async def on_new_private_message(event):
+
         if event.from_id == bot.uid:
             return
 
