@@ -33,9 +33,8 @@ HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", "")
 HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", "")
 
 # SQL Database URI
-uri = os.environ.get("DATABASE_URL", default=None)
-if uri.startswith("postgres://"):
-    uri = uri.replace("postgres://", "postgresql://", 1)
+DB_URI = os.environ.get("DATABASE_URL", default=None)
+
 # Default .alive logo
 ALIVE_LOGO = os.environ.get("ALIVE_LOGO") or "https://telegra.ph/file/b8a7689c29e999c60292a.jpg"
 
