@@ -11,10 +11,10 @@ PREV_REPLY_MESSAGE = {}
 
 
 
-USER_BOT_WARN_ZERO = "`Kora`: `You were spamming my master {}'s inbox, henceforth your retarded lame ass has been blocked by my master's Kora.` "
-USER_BOT_NO_WARN = (f"`Kora`: ** I'm Assistant Kora here to assist you, My Master {} will contact you soon! have patience..**\n\n"
-                    "`you have to write everything in one message only. If you haven't do it then you'll be automatically blocked.`"
-                    )
+USER_BOT_WARN_ZERO = '''`Kora`: `You were spamming my master {}'s inbox, henceforth your retarded lame ass has been blocked by my master's Kora.` '''
+USER_BOT_NO_WARN = ('''`Kora`: ** I'm Assistant Kora here to assist you, My Master {} will contact you soon! have patience..**
+                    `you have to write everything in one message only. If you haven't do it then you'll be automatically blocked.`
+                    ''')
 
 
 if BOTLOG is not None:
