@@ -558,7 +558,7 @@ async def gspider(gspdr):
             )
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]zombies(?: |$)(.*)", groups_only=False))
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]zombies(?: |$)(.*)"))
 async def rm_deletedacc(show):
     """ For ?zombies command, list all the ghost/deleted/zombie accounts in a chat. """
 
