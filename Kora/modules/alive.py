@@ -1,8 +1,7 @@
-from Kora import ALIVE_NAME, CMD_HELP, ALIVE_LOGO, bot
+from Kora import CMD_HELP, ALIVE_LOGO, bot
 from platform import python_version, uname
 from telethon import version, events
 import asyncio
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
 modules = CMD_HELP
 
@@ -16,7 +15,7 @@ async def alivekora(alive):
     text = (
         f" **__KORA USERBOT__** \n\n"
         f"**Owner** \n"
-        f" ➥ `{DEFAULTUSER}` \n"
+        f" ➥ `{user.first_name}` \n"
         f"**♛ ᴜsᴇʀɴᴀᴍᴇ** \n"
         f" ➥ `@{user.username}` \n"
         f"┏━━━━━━━━━━━━━━━━━━━\n"
