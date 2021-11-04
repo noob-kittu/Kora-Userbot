@@ -143,7 +143,7 @@ if BOTLOG is not None:
         user = await bot.get_me()
         uid = get_peer_id(user)
 
-        if event.from_id == bot.uid:
+        if event.from_id == uid:
             return
 
         if BOTLOG is None:
@@ -162,7 +162,7 @@ if BOTLOG is not None:
             return
         sender = await bot.get_entity(chat_id)
 
-        if chat_id == bot.uid:
+        if chat_id == uid:
 
             # don't log Saved Messages
 
