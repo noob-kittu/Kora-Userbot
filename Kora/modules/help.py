@@ -1,10 +1,9 @@
 from Kora import CMD_HELP
 from Kora import bot
 from telethon import events
-from Kora.events import kora
 
 
-@kora(outgoing=True, pattern="^?help(?: |$)(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]help(?: |$)(.*)"))
 async def help(event):
     """ For ?help command,"""
     args = event.pattern_match.group(1).lower()

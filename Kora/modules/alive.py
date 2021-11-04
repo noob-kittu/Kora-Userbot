@@ -1,14 +1,13 @@
 from Kora import ALIVE_NAME, CMD_HELP, ALIVE_LOGO, bot
 from platform import python_version, uname
-from telethon import version
+from telethon import version, events
 import asyncio
-from Kora.events import kora
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
 modules = CMD_HELP
 
 
-@kora(outgoing=True, pattern="^?alive")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]alive$"))
 async def alivekora(alive):
     user = await bot.get_me()
     await alive.edit("`hey, you have doubt? ohh shit...`")

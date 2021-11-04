@@ -1,6 +1,6 @@
 from asyncio import sleep
 from os import remove
-
+from telethon import events
 from telethon.errors import (
     BadRequestError,
     ChatAdminRequiredError,
@@ -32,7 +32,6 @@ from telethon.tl.types import (
 )
 
 from Kora import BOTLOG, BOTLOG, CMD_HELP, bot
-from Kora.events import kora
 
 # =================== CONSTANT ===================
 PP_TOO_SMOL = "`The image is too small`"
@@ -77,8 +76,7 @@ MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
 
-
-@kora(outgoing=True, pattern="^?setgpic$")
+@bot.on(events.NewMessage(pattern="^[?.]setgpic$"))
 async def set_group_photo(gpic):
     """ For ?setgpic command, changes the picture of a group """
     await gpic.edit("`Processing...`")
@@ -117,7 +115,7 @@ async def set_group_photo(gpic):
             await gpic.edit(PP_ERROR)
 
 
-@kora(outgoing=True, pattern="^?promote(?: |$)(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]promote(?: |$)(.*)"))
 async def promote(promt):
     """ For ?promote command, promotes the replied/tagged person """
     # Get targeted chat
@@ -170,7 +168,7 @@ async def promote(promt):
         )
 
 
-@kora(outgoing=True, pattern="^?demote(?: |$)(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]demote(?: |$)(.*)"))
 async def demote(dmod):
     """ For ?demote command, demotes the replied/tagged person """
     # Admin right check
@@ -222,7 +220,7 @@ async def demote(dmod):
         )
 
 
-@kora(outgoing=True, pattern="^?ban(?: |$)(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]ban(?: |$)(.*)"))
 async def ban(bon):
     """ For ?ban command, bans the replied/tagged person """
     # Here laying the sanity check
@@ -282,7 +280,7 @@ async def ban(bon):
         )
 
 
-@kora(outgoing=True, pattern="^?unban(?: |$)(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]unban(?: |$)(.*)"))
 async def nothanos(unbon):
     """ For ?unban command, unbans the replied/tagged person """
     # Here laying the sanity check
@@ -320,7 +318,7 @@ async def nothanos(unbon):
         await unbon.edit("`Uh oh my unban logic broke!`")
 
 
-@kora(outgoing=True, pattern="^?mute(?: |$)(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]mute(?: |$)(.*)"))
 async def spider(spdr):
     """
     This function is basically muting peeps
@@ -380,7 +378,7 @@ async def spider(spdr):
             return await spdr.edit("`Uh oh my mute logic broke!`")
 
 
-@kora(outgoing=True, pattern="^?unmute(?: |$)(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]unmute(?: |$)(.*)"))
 async def unmoot(unmot):
     """ For ?unmute command, unmute the replied/tagged person """
     # Admin or creator check
@@ -430,7 +428,7 @@ async def unmoot(unmot):
             )
 
 
-@kora(incoming=True, disable_errors=True)
+@bot.on(events.NewMessage(incoming=True, disable_errors=True))
 async def muter(moot):
     """ Used for deleting the messages of muted people """
     try:
@@ -470,7 +468,7 @@ async def muter(moot):
             await moot.delete()
 
 
-@kora(outgoing=True, pattern="^?ungmute(?: |$)(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]ungmute(?: |$)(.*)"))
 async def ungmoot(un_gmute):
     """ For ?ungmute command, ungmutes the target in the Kora """
     # Admin or creator check
@@ -515,7 +513,7 @@ async def ungmoot(un_gmute):
             )
 
 
-@kora(outgoing=True, pattern="^?gmute(?: |$)(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]gmute(?: |$)(.*)"))
 async def gspider(gspdr):
     """ For ?gmute command, globally mutes the replied/tagged person """
     # Admin or creator check
@@ -560,7 +558,7 @@ async def gspider(gspdr):
             )
 
 
-@kora(outgoing=True, pattern="^?zombies(?: |$)(.*)", groups_only=False)
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]zombies(?: |$)(.*)", groups_only=False))
 async def rm_deletedacc(show):
     """ For ?zombies command, list all the ghost/deleted/zombie accounts in a chat. """
 
@@ -630,7 +628,7 @@ async def rm_deletedacc(show):
         )
 
 
-@kora(outgoing=True, pattern="^?all$")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]all$"))
 async def tagaso(event):
     """ For ?all command, mention all of the member in the group chat"""
     if event.fwd_from:
@@ -643,7 +641,7 @@ async def tagaso(event):
     await bot.send_message(chat, mentions, reply_to=event.message.reply_to_msg_id)
 
 
-@kora(outgoing=True, pattern="^?admins(?: |$)(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]admins(?: |$)(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -697,7 +695,7 @@ async def _(event):
         await event.edit(mentions)
 
 
-@kora(outgoing=True, pattern="^?pin(?: |$)(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]pin(?: |$)(.*)"))
 async def pin(msg):
     """ For ?pin command, pins the replied/tagged message on the top the chat. """
     # Admin or creator check
@@ -743,7 +741,7 @@ async def pin(msg):
         )
 
 
-@kora(outgoing=True, pattern="^?kick(?: |$)(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]kick(?: |$)(.*)"))
 async def kick(usr):
     """ For ?kick command, kicks the replied/tagged person from the group. """
     # Admin or creator check
@@ -786,7 +784,7 @@ async def kick(usr):
         )
 
 
-@kora(outgoing=True, pattern="^?users ?(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]users ?(.*)"))
 async def get_users(show):
     """ For ?users command, list all of the users in a chat. """
     info = await show.client.get_entity(show.chat_id)
@@ -879,7 +877,7 @@ async def get_user_from_id(user, event):
     return user_obj
 
 
-@kora(outgoing=True, pattern="^?usersdel ?(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]usersdel ?(.*)"))
 async def get_usersdel(show):
     """ For ?usersdel command, list all of the deleted users in a chat. """
     info = await show.client.get_entity(show.chat_id)
@@ -974,7 +972,7 @@ async def get_userdel_from_id(user, event):
     return user_obj
 
 
-@kora(outgoing=True, pattern="^?bots(?: |$)(.*)")
+@bot.on(events.NewMessage(outgoing=True, pattern="^[?.]bots(?: |$)(.*)"))
 async def _(event):
     """ For ?listbot command, list all of the bots of the chat. """
     if event.fwd_from:
