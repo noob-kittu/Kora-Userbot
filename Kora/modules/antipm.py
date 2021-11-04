@@ -8,12 +8,11 @@ from telethon.utils import get_peer_id
 from Kora import BOTLOG, CMD_HELP, bot
 PM_WARNS = {}
 PREV_REPLY_MESSAGE = {}
-user = bot.get_me()
-uid = get_peer_id(user)
 
 
-USER_BOT_WARN_ZERO = "`Kora`: `You were spamming my master {user}'s inbox, henceforth your retarded lame ass has been blocked by my master's Kora.` "
-USER_BOT_NO_WARN = (f"`Kora`: ** I'm Assistant Kora here to assist you, My Master {user} will contact you soon! have patience..**\n\n"
+
+USER_BOT_WARN_ZERO = "`Kora`: `You were spamming my master {}'s inbox, henceforth your retarded lame ass has been blocked by my master's Kora.` "
+USER_BOT_NO_WARN = (f"`Kora`: ** I'm Assistant Kora here to assist you, My Master {} will contact you soon! have patience..**\n\n"
                     "`you have to write everything in one message only. If you haven't do it then you'll be automatically blocked.`"
                     )
 
@@ -141,6 +140,8 @@ if BOTLOG is not None:
 
     @bot.on(events.NewMessage(incoming=True))
     async def on_new_private_message(event):
+        user = await bot.get_me()
+        uid = await get_peer_id(user)
 
         if event.from_id == bot.uid:
             return
@@ -187,10 +188,12 @@ if BOTLOG is not None:
             await do_pm_permit_action(chat_id, event)
 
     async def do_pm_permit_action(chat_id, event):
+        user = await bot.get_me()
+        uid = await get_peer_id(user)
         if chat_id not in PM_WARNS:
             PM_WARNS.update({chat_id: 0})
         if PM_WARNS[chat_id] == 5:
-            r = await event.reply(USER_BOT_WARN_ZERO)
+            r = await event.reply(USER_BOT_WARN_ZERO.format(user))
             await asyncio.sleep(3)
             await event.client(functions.contacts.BlockRequest(chat_id))
             if chat_id in PREV_REPLY_MESSAGE:
@@ -214,7 +217,7 @@ if BOTLOG is not None:
                 return
             except:
                 return
-        r = await event.reply(USER_BOT_NO_WARN)
+        r = await event.reply(USER_BOT_NO_WARN.format(user))
         PM_WARNS[chat_id] += 1
         if chat_id in PREV_REPLY_MESSAGE:
             await PREV_REPLY_MESSAGE[chat_id].delete()
