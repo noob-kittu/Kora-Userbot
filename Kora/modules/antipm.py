@@ -141,7 +141,7 @@ if BOTLOG is not None:
     @bot.on(events.NewMessage(incoming=True))
     async def on_new_private_message(event):
         user = await bot.get_me()
-        uid = await get_peer_id(user)
+        uid = get_peer_id(user)
 
         if event.from_id == bot.uid:
             return
@@ -189,7 +189,7 @@ if BOTLOG is not None:
 
     async def do_pm_permit_action(chat_id, event):
         user = await bot.get_me()
-        uid = await get_peer_id(user)
+        uid = get_peer_id(user)
         if chat_id not in PM_WARNS:
             PM_WARNS.update({chat_id: 0})
         if PM_WARNS[chat_id] == 5:
