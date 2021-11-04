@@ -35,13 +35,13 @@ HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", "")
 DB_URI = os.environ.get("DATABASE_URL", None)
 
 # Default .alive name
-ALIVE_NAME = os.environ.get("ALIVE_NAME", None)
+ALIVE_NAME = os.environ.get("ALIVE_NAME", None) or "Kora"
 
 # Default .alive username
 ALIVE_USERNAME = os.environ.get("ALIVE_USERNAME", None)
 
 # Default .alive logo
-ALIVE_LOGO = os.environ.get("ALIVE_LOGO") or "https://telegra.ph/file/62dc59b2013a48f9cc8f3.jpg"
+ALIVE_LOGO = os.environ.get("ALIVE_LOGO") or "https://telegra.ph/file/b8a7689c29e999c60292a.jpg"
 
 
 
