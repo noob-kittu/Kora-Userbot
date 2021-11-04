@@ -5,8 +5,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 
 from Kora import DB_URI
 # the secret configuration specific things
-if DB_URI and DB_URI.startswith("postgres://"):
-    DB_URI = DB_URI.replace("postgres://", "postgresql://", 1)
+
 
 def start() -> scoped_session:
     engine = create_engine(DB_URI)
