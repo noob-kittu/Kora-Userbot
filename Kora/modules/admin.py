@@ -428,7 +428,7 @@ async def unmoot(unmot):
             )
 
 
-@bot.on(events.NewMessage(incoming=True, disable_errors=True))
+@bot.on(events.NewMessage(incoming=True))
 async def muter(moot):
     """ Used for deleting the messages of muted people """
     try:
