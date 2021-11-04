@@ -25,7 +25,7 @@ STRING_SESSION = os.environ.get("STRING_SESSION", "")
 BOTLOG = int(os.environ.get("BOTLOG_CHATID", ""))
 
 # Bleep Blop, this is a bot ;)
-PM_AUTO_BAN = os.environ.get("PM_AUTO_BAN", "False")
+PM_AUTO_BAN = os.environ.get("PM_AUTO_BAN", "True")
 
 # Heroku Credentials for updater.
 HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", "")
