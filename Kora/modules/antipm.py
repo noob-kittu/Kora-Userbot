@@ -95,7 +95,7 @@ if BOTLOG is not None:
             else:
               await event.edit("Already not approved to pm")
     
-    @bot.on(events.NewMessage(pattern="^[?.](daall|disapproveall|disallowall ?(.*)"))
+    @bot.on(events.NewMessage(pattern="^[?.](daall|disapproveall|disallowall) ?(.*)"))
     async def approve_p_m(event):
         if event.fwd_from:
             return
