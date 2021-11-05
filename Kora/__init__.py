@@ -24,8 +24,8 @@ STRING_SESSION = os.environ.get("STRING_SESSION", "")
 
 # Logging channel/group ID configuration.
 BOTLOG = int(os.environ.get("BOTLOG", ""))
-BOT_TOKEN = int(os.environ.get("BOT_TOKEN", ""))
-BOT_USERNAME = int(os.environ.get("BOT_USERNAME", ""))
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
+BOT_USERNAME = os.environ.get("BOT_USERNAME", "")
 
 
 # Bleep Blop, this is a bot ;)
