@@ -193,7 +193,7 @@ if BOTLOG is not None:
         if chat_id not in PM_WARNS:
             PM_WARNS.update({chat_id: 0})
         if PM_WARNS[chat_id] == 5:
-            r = await event.reply(USER_BOT_WARN_ZERO.format(user))
+            r = await event.reply(USER_BOT_WARN_ZERO.format(user.first_name))
             await asyncio.sleep(3)
             await event.client(functions.contacts.BlockRequest(chat_id))
             if chat_id in PREV_REPLY_MESSAGE:
@@ -217,7 +217,7 @@ if BOTLOG is not None:
                 return
             except:
                 return
-        r = await event.reply(USER_BOT_NO_WARN.format(user))
+        r = await event.reply(USER_BOT_NO_WARN.format(user.first_name))
         PM_WARNS[chat_id] += 1
         if chat_id in PREV_REPLY_MESSAGE:
             await PREV_REPLY_MESSAGE[chat_id].delete()
