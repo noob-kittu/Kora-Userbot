@@ -160,7 +160,7 @@ if BOTLOG is not None:
             # Kora's should not reply to other Kora's
             # https://core.telegram.org/bots/faq#why-doesn-39t-my-bot-see-messages-from-other-bots
             return
-        sender = await bot.get_entity(chat_id)
+        sender = await bot.get_entity(event.sender_id)
 
         if chat_id == uid:
 
@@ -187,8 +187,9 @@ if BOTLOG is not None:
             # pm permit
             await do_pm_permit_action(chat_id, event)
 
-    async def do_pm_permit_action(chat_id, event):
+    async def do_pm_permit_action(event):
         user = await bot.get_me()
+        chat_id = event.chat_id
         uid = await bot.get_peer_id(user)
         if chat_id not in PM_WARNS:
             PM_WARNS.update({chat_id: 0})
