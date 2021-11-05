@@ -23,7 +23,10 @@ API_HASH = "f8f5367907ae63115bbdce3524b87671"
 STRING_SESSION = os.environ.get("STRING_SESSION", "")
 
 # Logging channel/group ID configuration.
-BOTLOG = int(os.environ.get("BOTLOG_CHATID", ""))
+BOTLOG = int(os.environ.get("BOTLOG", ""))
+BOT_TOKEN = int(os.environ.get("BOT_TOKEN", ""))
+BOT_USERNAME = int(os.environ.get("BOT_USERNAME", ""))
+
 
 # Bleep Blop, this is a bot ;)
 PM_AUTO_BAN = os.environ.get("PM_AUTO_BAN", "True")

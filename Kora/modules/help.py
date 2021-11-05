@@ -1,6 +1,8 @@
 from Kora import CMD_HELP
 from Kora import bot
-from telethon import events
+from telethon import events, BOT_USERNAME, BOT_TOKEN
+import logging
+
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^[?.]help(?: |$)(.*)"))
@@ -22,3 +24,33 @@ async def help(event):
             "\n\nSpecify which module do you want help for !!\
                         \n**Usage:** `?help` <module name>"
         )
+
+
+
+from telethon.errors.rpcerrorlist import BotInlineDisabledError
+
+logging.basicConfig(
+    format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
+    level=logging.WARNING)
+
+
+@bot.on(events.NewMessage(pattern="^[?.]helpme$"))
+async def helpme(event):
+    tgbotusername = BOT_USERNAME
+    if tgbotusername and BOT_TOKEN:
+        try:
+            results = await event.client.inline_query(
+                tgbotusername,
+                "@KoraUserbot"
+            )
+        except BotInlineDisabledError:
+            return await event.edit("`Bot can't be used in inline mode.\nMake sure to turn on inline mode!`")
+        await results[0].click(
+            event.chat_id,
+            reply_to=event.reply_to_msg_id,
+            hide_via=True
+        )
+        await event.delete()
+    else:
+        return await event.edit("`The bot doesn't work! Please set the Bot Token and Username correctly.`"
+                                "\n`The module has been stopped.`")
