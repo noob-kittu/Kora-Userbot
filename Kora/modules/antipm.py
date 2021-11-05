@@ -141,9 +141,8 @@ if BOTLOG is not None:
     @bot.on(events.NewMessage(incoming=True))
     async def on_new_private_message(event):
         user = await bot.get_me()
-        uid = await bot.get_peer_id(user)
 
-        if event.from_id == uid:
+        if event.from_id == event.client.uid:
             return
 
         if BOTLOG is None:
@@ -153,16 +152,16 @@ if BOTLOG is not None:
             return
 
         message_text = event.message.message
-        chat_id = event.from_id
+        chat_id = event.sender_id
 
         current_message_text = message_text.lower()
         if USER_BOT_NO_WARN == message_text:
             # Kora's should not reply to other Kora's
             # https://core.telegram.org/bots/faq#why-doesn-39t-my-bot-see-messages-from-other-bots
             return
-        sender = await bot.get_entity(event.sender_id)
+        sender = await event.get_chat()
 
-        if chat_id == uid:
+        if chat_id == event.client.uid:
 
             # don't log Saved Messages
 
@@ -185,11 +184,10 @@ if BOTLOG is not None:
 
         if not antipm_sql.is_approved(chat_id):
             # pm permit
-            await do_pm_permit_action(chat_id, event)
+            await do_pm_permit_action(chat_id, event, sender)
 
-    async def do_pm_permit_action(event):
+    async def do_pm_permit_action(chat_id, event, sender):
         user = await bot.get_me()
-        chat_id = event.chat_id
         uid = await bot.get_peer_id(user)
         if chat_id not in PM_WARNS:
             PM_WARNS.update({chat_id: 0})
