@@ -18,6 +18,8 @@ LOGGER = getLogger(__name__)
 
 
 CMD_HELP = {}
+COUNT_PM = {}
+LASTMSG = {}
 
 # Telegram App KEY and HASH
 API_KEY = 2191715
