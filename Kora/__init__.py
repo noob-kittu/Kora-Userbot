@@ -79,7 +79,7 @@ async def send_alive_status():
 
 def paginate_help(page_number, loaded_modules, prefix):
     number_of_rows = 5
-    number_of_cols = 4
+    number_of_cols = 3
     helpable_modules = [p for p in loaded_modules if not p.startswith("_")]
     helpable_modules = sorted(helpable_modules)
     modules = [
@@ -208,10 +208,10 @@ with bot:
                 modul_name = event.data_match.group(1).decode("UTF-8")
 
                 cmdhel = str(CMD_HELP[modul_name])
-                if len(cmdhel) > 250:
+                if len(cmdhel) > 150:
                     help_string = (
-                        str(CMD_HELP[modul_name]).replace('`', '')[:250] + "..."
-                        + "\n\nRead more .help "
+                        str(CMD_HELP[modul_name]).replace('`', '')[:150] + "..."
+                        + "\n\nRead more ?help "
                         + modul_name
                         + " "
                     )

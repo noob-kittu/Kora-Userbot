@@ -142,7 +142,7 @@ async def auto_accept(event):
                     )
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern=r"^.notifoff$"))
+@bot.on(events.NewMessage(outgoing=True, pattern=r"^[?.]notifoff$"))
 async def notifoff(noff_event):
     """For .notifoff command, stop getting notifications from unapproved PMs."""
     try:
@@ -154,7 +154,7 @@ async def notifoff(noff_event):
     await noff_event.edit("`Notifications from unapproved PM's are silenced!`")
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern=r"^.notifon$"))
+@bot.on(events.NewMessage(outgoing=True, pattern=r"^[?.]notifon$"))
 async def notifon(non_event):
     """For .notifoff command, get notifications from unapproved PMs."""
     try:
@@ -166,7 +166,7 @@ async def notifon(non_event):
     await non_event.edit("`Notifications from unapproved PM's unmuted!`")
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern=r"^.approve$"))
+@bot.on(events.NewMessage(outgoing=True, pattern=r"^[?.]approve$"))
 async def approvepm(apprvpm):
     """For .approve command, give someone the permissions to PM you."""
     try:
@@ -215,7 +215,7 @@ async def approvepm(apprvpm):
         )
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern=r"^.disapprove$"))
+@bot.on(events.NewMessage(outgoing=True, pattern=r"^[?.]disapprove$"))
 async def disapprovepm(disapprvpm):
     try:
         from Kora.sql.antipm_sql import dissprove
@@ -245,7 +245,7 @@ async def disapprovepm(disapprvpm):
         )
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern=r"^.block$"))
+@bot.on(events.NewMessage(outgoing=True, pattern=r"^[?.]block$"))
 async def blockpm(block):
     """For .block command, block people from PMing you!"""
     if block.reply_to_msg_id:
@@ -276,7 +276,7 @@ async def blockpm(block):
         )
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern=r"^.unblock$"))
+@bot.on(events.NewMessage(outgoing=True, pattern=r"^[?.]unblock$"))
 async def unblockpm(unblock):
     """For .unblock command, let people PMing you again!"""
     if unblock.reply_to_msg_id:
@@ -294,7 +294,7 @@ async def unblockpm(unblock):
         )
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern=r"^.(set|get|reset) pm_msg(?: |$)(\w*)"))
+@bot.on(events.NewMessage(outgoing=True, pattern=r"^[?.](set|get|reset) pm_msg(?: |$)(\w*)"))
 async def add_pmsg(cust_msg):
     """Set your own Unapproved message"""
     if not PM_AUTO_BAN:
