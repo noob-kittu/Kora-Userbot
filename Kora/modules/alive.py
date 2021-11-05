@@ -13,7 +13,7 @@ async def alivekora(alive):
     await alive.edit("`i'm really alive re`")
 
     text = (
-        f" **__KORA USERBOT__** \n\n"
+        f" **»»------(¯`ƙσɾα UʂҽɾႦσƚ´¯)------»»** \n\n"
         f"**Owner** \n"
         f" ➥ `{user.first_name}` \n"
         f"**♛ ᴜsᴇʀɴᴀᴍᴇ** \n"
