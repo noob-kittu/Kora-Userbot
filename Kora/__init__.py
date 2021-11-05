@@ -234,7 +234,7 @@ with bot:
             "If you think there is a problem other than this, contact us.")
 
     try:
-        bot.loop.run_until_complete(check_botlog_chatid())
+        tgbot.loop.run_until_complete(check_botlog_chatid())
     except BaseException:
         LOGGER.info(
             "BOTLOG environment variable isn't a "
@@ -243,7 +243,7 @@ with bot:
         quit(1)
 
     try:
-        bot.loop.run_until_complete(send_alive_status())
+        tgbot.loop.run_until_complete(send_alive_status())
     except BaseException:
         pass
 
