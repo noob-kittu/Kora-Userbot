@@ -166,7 +166,7 @@ async def notifon(non_event):
     await non_event.edit("`Notifications from unapproved PM's unmuted!`")
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern=r"^[?.]approve$"))
+@bot.on(events.NewMessage(outgoing=True, pattern=r"^[?.](a|allow|approve)$"))
 async def approvepm(apprvpm):
     """For .approve command, give someone the permissions to PM you."""
     try:
@@ -215,7 +215,7 @@ async def approvepm(apprvpm):
         )
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern=r"^[?.]disapprove$"))
+@bot.on(events.NewMessage(outgoing=True, pattern=r"^[?.](da|disallow|disapprove)$"))
 async def disapprovepm(disapprvpm):
     try:
         from Kora.sql.antipm_sql import dissprove
