@@ -2,7 +2,8 @@ import os
 import re
 import logging
 from logging import getLogger
-from telethon import TelegramClient, custom, events, version
+from telethon import version, __version__
+from telethon.sync import TelegramClient, custom, events
 from telethon.sessions import StringSession
 from math import ceil
 from platform import python_version
