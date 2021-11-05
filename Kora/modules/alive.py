@@ -14,11 +14,9 @@ async def alivekora(alive):
 
     text = (
         f" **»»------(¯`ƙσɾα UʂҽɾႦσƚ´¯)------»»** \n\n"
-        f"**Owner** \n"
-        f" ➥ `{user.first_name}` \n"
-        f"**♛ ᴜsᴇʀɴᴀᴍᴇ** \n"
-        f" ➥ `@{user.username}` \n"
         f"┏━━━━━━━━━━━━━━━━━━━\n"
+        f"┣[• `Owner :` `{user.first_name}` \n"
+        f"┣[• `Username :` `{user.username}` \n"
         f"┣[• `Telethon :`Ver {version.__version__} \n"
         f"┣[• `Python   :`Ver {python_version()} \n"
         f"┣[• `Modules  :`{len(modules)} Modules \n"
