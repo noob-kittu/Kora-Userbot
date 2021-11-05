@@ -206,9 +206,9 @@ with bot:
                 modul_name = event.data_match.group(1).decode("UTF-8")
 
                 cmdhel = str(CMD_HELP[modul_name])
-                if len(cmdhel) > 350:
+                if len(cmdhel) > 250:
                     help_string = (
-                        str(CMD_HELP[modul_name]).replace('`', '')[:350] + "..."
+                        str(CMD_HELP[modul_name]).replace('`', '')[:250] + "..."
                         + "\n\nRead more .help "
                         + modul_name
                         + " "
