@@ -1,6 +1,6 @@
-from Kora import CMD_HELP
+from Kora import CMD_HELP, BOT_USERNAME, BOT_TOKEN
 from Kora import bot
-from telethon import events, BOT_USERNAME, BOT_TOKEN
+from telethon import events
 import logging
 
 
