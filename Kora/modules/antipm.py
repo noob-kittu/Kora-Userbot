@@ -13,7 +13,7 @@ PREV_REPLY_MESSAGE = {}
 
 USER_BOT_WARN_ZERO = '''`Kora`: `You were spamming my master {}'s inbox, henceforth your retarded lame ass has been blocked by my master's Kora.` '''
 USER_BOT_NO_WARN = ('''`Kora`: ** I'm Assistant Kora here to assist you, My Master {} will contact you soon! have patience..**
-                    `you have to write everything in one message only. If you haven't do it then you'll be automatically blocked.`
+`you have to write everything in one message only. If you haven't do it then you'll be automatically blocked.`
                     ''')
 
 
@@ -160,7 +160,7 @@ if BOTLOG is not None:
             # Kora's should not reply to other Kora's
             # https://core.telegram.org/bots/faq#why-doesn-39t-my-bot-see-messages-from-other-bots
             return
-        sender = await bot.get_entity(event.sender_id)
+        sender = await bot.get_entity(chat_id)
 
         if chat_id == uid:
 
