@@ -107,7 +107,7 @@ def paginate_help(page_number, loaded_modules, prefix):
 with bot:
     try:
         tgbot = TelegramClient(
-            "KoraBOT",
+            "KoraBot",
             api_id=API_KEY,
             api_hash=API_HASH).start(
             bot_token=BOT_TOKEN)
