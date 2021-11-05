@@ -2,9 +2,11 @@ import os
 import re
 import logging
 from logging import getLogger
-from telethon import TelegramClient, custom, events
+from telethon import TelegramClient, custom, events, version
 from telethon.sessions import StringSession
 from math import ceil
+from platform import python_version
+
 
 
 
@@ -49,6 +51,28 @@ else:
     # pylint: disable=invalid-name
     bot = TelegramClient("koraUserbot", API_KEY, API_HASH)
 
+
+async def check_botlog_chatid():
+    if not BOTLOG:
+        return
+
+    entity = await bot.get_entity(BOTLOG)
+    if entity.default_banned_rights.send_messages:
+        LOGGER.info(
+            "Your account doesn't have rights to send messages to BOTLOG "
+            "group. Check if you typed the Chat ID correctly.")
+        quit(1)
+
+
+async def send_alive_status():
+    if BOTLOG:
+        message = (
+            "**Bot is up and running!**\n\n"
+            f"**Telethon:** {version.__version__}\n"
+            f"**Python:** {python_version()}\n"
+        )
+        await bot.send_message(BOTLOG, message)
+        return True
 
 def paginate_help(page_number, loaded_modules, prefix):
     number_of_rows = 5
@@ -208,6 +232,20 @@ with bot:
             "Support for inline is disabled on your bot. "
             "To enable it, define a bot token and enable inline mode on your bot. "
             "If you think there is a problem other than this, contact us.")
+
+    try:
+        bot.loop.run_until_complete(check_botlog_chatid())
+    except BaseException:
+        LOGGER.info(
+            "BOTLOG environment variable isn't a "
+            "valid entity. Check your environment variables/config.env file."
+        )
+        quit(1)
+
+    try:
+        bot.loop.run_until_complete(send_alive_status())
+    except BaseException:
+        pass
 
 
 
