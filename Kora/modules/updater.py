@@ -2,16 +2,15 @@
 from os import remove, execle, path, environ
 import asyncio
 import sys
-from telethon import eventsi
+from telethon import events
 
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
 from Kora import (BOTLOG, CMD_HELP, HEROKU_API_KEY,
-                     HEROKU_APP_NAME)
+                     HEROKU_APP_NAME, UPSTREAM_REPO_BRANCH, UPSTREAM_REPO_URL, bot)
 
 
-UPSTREAM_REPO_URL ="https://github.com/noob-kittu/Kora-Userbot"
 
 requirements_path = path.join(
     path.dirname(path.dirname(path.dirname(__file__))), 'requirements.txt')
@@ -106,7 +105,7 @@ async def update(event, repo, ups_rem, ac_br):
     return
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern=r"^.update(?: |$)(now|deploy)?"))
+@bot.on(events.NewMessage(outgoing=True, pattern=r"^[?.]update(?: |$)(now|deploy)?"))
 async def upstream(event):
     """For .update command, check if the bot is up to date, update if specified"""
     await event.edit("`Checking for updates, please wait....`")

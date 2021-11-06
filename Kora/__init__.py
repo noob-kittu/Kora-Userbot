@@ -41,6 +41,13 @@ PM_AUTO_BAN = os.environ.get("PM_AUTO_BAN", "True")
 HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", "")
 HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", "")
 
+
+# Custom (forked) repo URL for updater.
+UPSTREAM_REPO_URL = os.environ.get(
+    "UPSTREAM_REPO_URL", "https://github.com/Noob-Kittu/KoraUserbot.git")
+UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH", "main")
+
+
 # SQL Database URI
 DB_URI = os.environ.get("DATABASE_URL", default=None)
 
